@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Market - Buy & Sell</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; background: #f4f4f9; color: #333; }
+        h1, h2 { color: #2c3e50; }
+        .house-card { background: white; padding: 15px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        form { background: white; padding: 20px; border-radius: 8px; margin-top: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        input, select { width: 100%; padding: 10px; margin: 8px 0; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        button { background: #3498db; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px; }
+        button:hover { background: #2980b9; }
+    </style>
+</head>
+<body>
+
+    <h1>🏠 House Marketplace</h1>
+    <p>Browse available houses or list a new property for sale.</p>
+
+    <h2>Available Listings</h2>
+    {% for house in houses %}
+        <div class="house-card">
+            <h3>{{ house.title }}</h3>
+            <p><strong>Price:</strong> {{ house.price }} | <strong>Location:</strong> {{ house.location }} | <strong>Type:</strong> {{ house.type }}</p>
+        </div>
+    {% endfor %}
+
+    <form action="/add" method="POST">
+        <h2>List a New House</h2>
+        <input type="text" name="title" placeholder="Property Title (e.g. 3 Bedroom House)" required>
+        <input type="text" name="price" placeholder="Price (e.g. $180,000)" required>
+        <input type="text" name="location" placeholder="Location" required>
+        <select name="type">
+            <option value="For Sale">For Sale</option>
+            <option value="For Rent">For Rent</option>
+        </select>
+        <button type="submit">Publish Listing</button>
+    </form>
+
+</body>
+</html>
